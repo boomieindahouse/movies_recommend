@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import '../widgets/movie_list.dart';
+import '../widgets/movie_item.dart';
 import '../services/api_service.dart';
 import '../models/movie.dart';
 import '../models/genre.dart';
+import 'movie_list_screen.dart'; // Import MovieListScreen
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -12,20 +13,13 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final ApiService apiService = ApiService();
   late Future<List<Genre>> genreFuture;
-  late Future<List<Movie>> movieFuture;
-  int? selectedGenreId;
+  late Future<List<Movie>> popularMoviesFuture; // ดึงหนังยอดนิยม
 
   @override
   void initState() {
     super.initState();
     genreFuture = apiService.fetchGenres();
-  }
-
-  void updateMovies(int genreId) {
-    setState(() {
-      selectedGenreId = genreId;
-      movieFuture = apiService.fetchMoviesByGenre(genreId);
-    });
+    popularMoviesFuture = apiService.fetchPopularMovies(); // ดึงหนังยอดนิยม
   }
 
   @override
@@ -52,14 +46,22 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
           child: Scaffold(
-            backgroundColor:
-                const Color.fromARGB(0, 0, 0, 0), // ทำให้พื้นหลังโปร่งใส
-            appBar: AppBar(
-              title: Text('ภาพยนตร์น่าดู',
-                  style: TextStyle(fontFamily: 'ThaiFont')),
-            ),
+            backgroundColor: const Color.fromARGB(0, 0, 0, 0),
             body: Column(
               children: [
+                // Text ตรงกลางด้านบน
+                Padding(
+                  padding: const EdgeInsets.symmetric(vertical: 60.0),
+                  child: Text(
+                    'Movies For You',
+                    style: TextStyle(
+                      fontSize: 44,
+                      fontWeight: FontWeight.bold,
+                      color: const Color.fromARGB(212, 176, 18, 18),
+                      fontFamily: 'ThaiFont',
+                    ),
+                  ),
+                ),
                 // แสดงประเภทภาพยนตร์
                 FutureBuilder<List<Genre>>(
                   future: genreFuture,
@@ -67,29 +69,33 @@ class _HomeScreenState extends State<HomeScreen> {
                     if (snapshot.connectionState == ConnectionState.waiting) {
                       return Center(
                         child: Padding(
-                          padding: const EdgeInsets.only(
-                              top: 16.0), // เพิ่ม padding ด้านบน
+                          padding: const EdgeInsets.only(top: 16.0),
                           child: CircularProgressIndicator(
-                            valueColor:
-                                AlwaysStoppedAnimation<Color>(Colors.red),
+                            valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
                           ),
                         ),
                       );
                     } else if (snapshot.hasError) {
-                      return Center(
-                          child: Text(
-                              'Error: ${snapshot.error}')); // ใช้ Center widget
+                      return Center(child: Text('Error: ${snapshot.error}'));
                     } else {
                       return Padding(
-                        padding: const EdgeInsets.only(
-                            top: 16.0), // เพิ่ม padding ด้านบน
+                        padding: const EdgeInsets.only(top: 16.0),
                         child: DropdownButton<int>(
                           hint: Text('เลือกประเภทหนัง',
-                              style: TextStyle(
-                                  fontFamily: 'ThaiFont', color: Colors.white)),
-                          value: selectedGenreId,
+                              style: TextStyle(fontFamily: 'ThaiFont', color: Colors.white)),
                           onChanged: (int? newValue) {
-                            updateMovies(newValue!);
+                            if (newValue != null) {
+                              final selectedGenre = snapshot.data!.firstWhere((genre) => genre.id == newValue);
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => MovieListScreen(
+                                    genreId: newValue, // ส่ง genreId
+                                    genreName: selectedGenre.name, // ส่งชื่อประเภทหนัง
+                                  ),
+                                ),
+                              );
+                            }
                           },
                           items: snapshot.data!.map((genre) {
                             return DropdownMenuItem<int>(
@@ -105,25 +111,38 @@ class _HomeScreenState extends State<HomeScreen> {
                     }
                   },
                 ),
-                // แสดงภาพยนตร์ตามประเภทที่เลือก
-                Expanded(
-                  child: FutureBuilder<List<Movie>>(
-                    future: selectedGenreId != null ? movieFuture : null,
-                    builder: (context, snapshot) {
-                      if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Center(
-                            child: CircularProgressIndicator(
-                          valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
-                        ));
-                      } else if (snapshot.hasError) {
-                        return Center(child: Text('Error: ${snapshot.error}'));
-                      } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
-                        return Center(child: Text('No movies found.'));
-                      } else {
-                        return MovieList(movies: snapshot.data!);
-                      }
-                    },
-                  ),
+                SizedBox(height: 100), // เพิ่มระยะห่าง
+                // แสดงหนังยอดนิยมเป็น Carousel ด้านล่าง
+                FutureBuilder<List<Movie>>(
+                  future: popularMoviesFuture,
+                  builder: (context, snapshot) {
+                    if (snapshot.connectionState == ConnectionState.waiting) {
+                      return Center(
+                        child: Padding(
+                          padding: const EdgeInsets.only(top: 16.0),
+                          child: CircularProgressIndicator(
+                            valueColor: AlwaysStoppedAnimation<Color>(Colors.red),
+                          ),
+                        ),
+                      );
+                    } else if (snapshot.hasError) {
+                      return Center(child: Text('Error: ${snapshot.error}'));
+                    } else if (!snapshot.hasData || snapshot.data!.isEmpty) {
+                      return Center(child: Text('No popular movies found.'));
+                    } else {
+                      return Container(
+                        height: 300,
+                        child: ListView.builder(
+                          scrollDirection: Axis.horizontal,
+                          itemCount: snapshot.data!.length,
+                          itemBuilder: (context, index) {
+                            Movie movie = snapshot.data![index];
+                            return MovieItem(movie: movie); // เรียกใช้งาน MovieItem
+                          },
+                        ),
+                      );
+                    }
+                  },
                 ),
               ],
             ),
