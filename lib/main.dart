@@ -9,7 +9,6 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'ภาพยนตร์น่าดู',
       theme: ThemeData(primarySwatch: Colors.blue, fontFamily: 'ThaiFont'),
       home: HomeScreen(),
     );

@@ -1,41 +1,50 @@
 import 'package:flutter/material.dart';
-import '../models/movie.dart'; // ตรวจสอบให้แน่ใจว่าได้ import โมเดล Movie ด้วย
+import '../models/movie.dart';
+import '../screens/movie_detail_screen.dart';
 
 class MovieItem extends StatelessWidget {
   final Movie movie;
 
-  const MovieItem({Key? key, required this.movie}) : super(key: key);
+  MovieItem({required this.movie});
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: 180,
-      margin: EdgeInsets.symmetric(horizontal: 10),
-      child: Column(
-        children: [
-          GestureDetector(
-            onTap: () {
-              // Navigate ไปยังหน้ารายละเอียดหนัง
-              // Navigator.push(...);
-            },
-            child: Image.network(
-              'https://image.tmdb.org/t/p/w500${movie.posterPath}',
-              fit: BoxFit.cover,
-              height: 240,
-            ),
+    return GestureDetector(
+      onTap: () {
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => MovieDetailScreen(movie: movie),
           ),
-          SizedBox(height: 10),
-          Text(
-            movie.title,
-            style: TextStyle(
-              fontSize: 16,
-              fontFamily: 'ThaiFont',
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+        );
+      },
+      child: Container(
+        margin: EdgeInsets.symmetric(horizontal: 8.0),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.center, // จัดให้อยู่ตรงกลาง
+          children: [
+            // โปสเตอร์หนัง
+            Container(
+              width: 150,
+              height: 210,
+              child: Image.network(
+                'https://image.tmdb.org/t/p/w500${movie.posterPath}',
+                fit: BoxFit.cover,
+              ),
             ),
-            textAlign: TextAlign.center,
-          ),
-        ],
+            SizedBox(height: 8.0),
+            // ชื่อหนังตรงกลางด้านล่างของโปสเตอร์
+            Text(
+              movie.title,
+              style: TextStyle(
+                fontSize: 16,
+                fontFamily: 'ThaiFont',
+                color: const Color.fromARGB(255, 218, 218, 218),
+              ),
+              textAlign: TextAlign.center, // จัดให้ text อยู่ตรงกลาง
+            ),
+          ],
+        ),
       ),
     );
   }

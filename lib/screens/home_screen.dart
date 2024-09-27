@@ -53,11 +53,11 @@ class _HomeScreenState extends State<HomeScreen> {
                 Padding(
                   padding: const EdgeInsets.symmetric(vertical: 60.0),
                   child: Text(
-                    'Movies For You',
+                    'What should I ดู',
                     style: TextStyle(
-                      fontSize: 44,
+                      fontSize: 38,
                       fontWeight: FontWeight.bold,
-                      color: const Color.fromARGB(212, 176, 18, 18),
+                      color: const Color.fromARGB(255, 255, 255, 255),
                       fontFamily: 'ThaiFont',
                     ),
                   ),
