@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import '../models/movie.dart';
 import '../services/api_service.dart';
-import '../widgets/movie_list.dart'; // สมมุติว่ามี MovieList สำหรับแสดงรายการหนัง
+import '../widgets/movie_list.dart';
 
 class MovieListScreen extends StatelessWidget {
-  final int genreId; // รับ genreId
-  final String genreName; // รับ genreName
+  final int genreId; 
+  final String genreName; 
 
-  MovieListScreen({required this.genreId, required this.genreName}); // Constructor
+  MovieListScreen({required this.genreId, required this.genreName});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class MovieListScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text(genreName), // แสดงชื่อประเภทหนังที่เลือก
+        title: Text(genreName), 
       ),
       body: Container(
         decoration: BoxDecoration(

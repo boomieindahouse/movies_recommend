@@ -19,16 +19,16 @@ class MovieCard extends StatelessWidget {
         );
       },
       child: Card(
-        elevation: 0, // ลบเงาของ Card
-        color: Colors.transparent, // ทำให้ Card โปร่งใส
+        elevation: 0, 
+        color: Colors.transparent, 
         shape: RoundedRectangleBorder(
-          side: BorderSide(color: Colors.white, width: 1), // กำหนดสีและความหนาของ border
-          borderRadius: BorderRadius.circular(8), // กำหนดความโค้งของมุม
+          side: BorderSide(color: Colors.white, width: 1), 
+          borderRadius: BorderRadius.circular(8), 
         ),
         child: Container(
           decoration: BoxDecoration(
-            color: const Color.fromARGB(255, 199, 141, 140).withOpacity(0.1), // กำหนดสีพื้นหลังโปร่งใส
-            borderRadius: BorderRadius.circular(2), // กำหนดความโค้งของมุม
+            color: const Color.fromARGB(255, 199, 141, 140).withOpacity(0.1), 
+            borderRadius: BorderRadius.circular(2), 
           ),
           child: Padding(
             padding: const EdgeInsets.all(8.0),

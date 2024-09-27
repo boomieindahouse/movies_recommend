@@ -21,7 +21,7 @@ class MovieItem extends StatelessWidget {
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 8.0),
         child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center, // จัดให้อยู่ตรงกลาง
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             // โปสเตอร์หนัง
             Container(
@@ -41,7 +41,7 @@ class MovieItem extends StatelessWidget {
                 fontFamily: 'ThaiFont',
                 color: const Color.fromARGB(255, 218, 218, 218),
               ),
-              textAlign: TextAlign.center, // จัดให้ text อยู่ตรงกลาง
+              textAlign: TextAlign.center,
             ),
           ],
         ),

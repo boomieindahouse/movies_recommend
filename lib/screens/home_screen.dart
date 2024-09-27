@@ -3,7 +3,7 @@ import '../widgets/movie_item.dart';
 import '../services/api_service.dart';
 import '../models/movie.dart';
 import '../models/genre.dart';
-import 'movie_list_screen.dart'; // Import MovieListScreen
+import 'movie_list_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -13,7 +13,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   final ApiService apiService = ApiService();
   late Future<List<Genre>> genreFuture;
-  late Future<List<Movie>> popularMoviesFuture; // ดึงหนังยอดนิยม
+  late Future<List<Movie>> popularMoviesFuture;
 
   @override
   void initState() {

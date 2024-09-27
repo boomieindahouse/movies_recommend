@@ -17,7 +17,7 @@ class MovieDetailScreen extends StatelessWidget {
         ),
       ),
       child: Scaffold(
-        backgroundColor: Colors.transparent, // ทำให้พื้นหลังของ Scaffold โปร่งใส
+        backgroundColor: Colors.transparent,
         appBar: AppBar(
           title: Text(
             movie.title,
@@ -36,11 +36,11 @@ class MovieDetailScreen extends StatelessWidget {
                 // แสดงภาพโปสเตอร์
                 Center(
                   child: Container(
-                    width: 200, // กำหนดความกว้างที่ต้องการ
-                    height: 300, // กำหนดความสูงที่ต้องการ
+                    width: 200, 
+                    height: 300, 
                     child: Image.network(
                       'https://image.tmdb.org/t/p/w500${movie.posterPath}',
-                      fit: BoxFit.cover, // ปรับขนาดภาพให้พอดีกับ Container
+                      fit: BoxFit.cover,
                     ),
                   ),
                 ),
