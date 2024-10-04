@@ -33,3 +33,7 @@ This app uses The Movie Database (TMDb) API to fetch movie data. To run the app,
 - FutureBuilder: The app uses FutureBuilder widgets in the screens to handle asynchronous requests to the API. These widgets ensure the UI reacts accordingly while waiting for data or handling errors.
 - UI Components: The app is built using reusable components such as MovieCard and MovieList, making it easy to display the fetched movie data in a clean and modular way.
 
+### Future Enhancements
+- Search Functionality: Add the ability to search for specific movies by name.
+- User Authentication: Allow users to log in and save their favorite movies.
+- Movie Ratings: Include user reviews and ratings for each movie.
