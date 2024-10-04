@@ -11,11 +11,11 @@ The **Movie Recommendation App** is a Flutter application that helps users disco
 
 ### Installation
 
-- Clone the repository:
+- Clone the repository: <br/ >
   `git clone https://github.com/your-username/movie-recommendation-app.git`
-- Install dependencies:
+- Install dependencies:<br/ >
   `flutter pub get`
-- Run the app on an emulator or a physical device:
+- Run the app on an emulator or a physical device: <br/ >
   `flutter run`
 
 ### API Integration
