@@ -15,10 +15,14 @@ The **Movie Recommendation App** is a Flutter application that helps users disco
   ``` bash
   git clone https://github.com/your-username/movie-recommendation-app.git
   ```
-- Install dependencies:</br >
-  ```flutter pub get```
+- Install dependencies:
+  ```
+  flutter pub get
+  ```
 - Run the app on an emulator or a physical device: </br >
-  ```flutter run```
+  ```
+  flutter run
+  ```
 
 ### API Integration
 
