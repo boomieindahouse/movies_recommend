@@ -18,3 +18,7 @@ Installation
 - Run the app on an emulator or a physical device:
   `flutter run`
 
+API Integration
+
+This app uses The Movie Database (TMDb) API to fetch movie data. To run the app, you will need to create an account on TMDb, generate an API key, and add it to the api_service.dart file.
+
