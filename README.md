@@ -1,7 +1,5 @@
 # Movie Recommendation App
 
-## Overview
-
 The **Movie Recommendation App** is a Flutter application that helps users discover popular movies and filter them by genre. It utilizes the TMDb API to fetch real-time movie data and display it in an intuitive interface. This app allows users to browse movies by genres and view detailed information for each movie.
 
 ## Features
