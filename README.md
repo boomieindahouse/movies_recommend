@@ -9,7 +9,7 @@ The **Movie Recommendation App** is a Flutter application that helps users disco
 - **Movie Details**: Upon selecting a movie, users can view detailed information such as the title, description, and a movie poster.
 - **Dynamic Movie Data**: The app fetches real-time data from the TMDb API, ensuring that users always see the latest popular movies and genres.
 
-Installation
+### Installation
 
 - Clone the repository:
   `git clone https://github.com/your-username/movie-recommendation-app.git`
@@ -18,7 +18,7 @@ Installation
 - Run the app on an emulator or a physical device:
   `flutter run`
 
-API Integration
+### API Integration
 
 This app uses The Movie Database (TMDb) API to fetch movie data. To run the app, you will need to create an account on TMDb, generate an API key, and add it to the api_service.dart file.
 
