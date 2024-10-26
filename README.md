@@ -28,7 +28,9 @@ This **Movie Recommendation App** is a mini-project for the course **Development
 
 This app uses The Movie Database (TMDb) API to fetch movie data. To run the app, you will need to create an account on TMDb, generate an API key, and add it to the api_service.dart file.
 
+<!--
 ### How It Works
 - API Service: The ApiService class handles all API requests. It includes methods to fetch genres and popular movies from TMDb.
 - FutureBuilder: The app uses FutureBuilder widgets in the screens to handle asynchronous requests to the API. These widgets ensure the UI reacts accordingly while waiting for data or handling errors.
 - UI Components: The app is built using reusable components such as MovieCard and MovieList, making it easy to display the fetched movie data in a clean and modular way.
+-->
