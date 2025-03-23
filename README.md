@@ -13,7 +13,7 @@ This **Movie Recommendation App** is a mini-project for the course **Development
 
 - Clone the repository:</br >
   `
-  git clone https://github.com/your-username/movie-recommendation-app.git
+  git clone https://github.com/boomieindahouse/movies_recommend.git
   `
 - Install dependencies:</br >
   `
